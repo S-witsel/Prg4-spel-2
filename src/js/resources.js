@@ -1,9 +1,26 @@
 import { ImageSource, Sound, Resource, Loader } from 'excalibur'
-import fishImage from '../images/fish.png'
+
+import mainmenubutton from '../images/mainmenubutton.png'
+import retrybutton from '../images/retrybutton.png'
+import startbutton from '../images/startbutton.png'
+
+import spritesheetplayer from '../images/spritesheetplayer.png'
+
+import platformsegment from '../images/platformsegment.png'
 
 const Resources = {
-    Fish: new ImageSource(fishImage)
-}
-const ResourceLoader = new Loader([Resources.Fish])
+    MainMenuButton: new ImageSource(mainmenubutton),
+    RetryButton: new ImageSource(retrybutton),
+    StartButton: new ImageSource(startbutton),
 
+    PlayerSpriteSheet: new ImageSource(spritesheetplayer),
+
+    PlatformSegment: new ImageSource(platformsegment)
+}
+
+const resourceArray = []
+for (const key in Resources) {
+    resourceArray.push(Resources[key])
+}
+const ResourceLoader = new Loader(resourceArray)
 export { Resources, ResourceLoader }
