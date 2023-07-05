@@ -29,7 +29,8 @@ export class PowerUpFly extends PowerupBase{
         this.on('collisionstart', (event) => {
             if(event.other instanceof Player){
                 engine.currentScene.player.friends++
-                
+                engine.currentScene.player.addfriend(engine)
+                this.unparent()
                 this.kill()
             }
         })

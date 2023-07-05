@@ -53,6 +53,10 @@ export class Level1 extends Scene{
     }
 
     onActivate(){
+
+        this.player.deletefriend()
+        
+        this.player.friendlyfly = 0
         this.player.friends = 0
         this.player.friendlist = []
 

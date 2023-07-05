@@ -1,6 +1,7 @@
 import { Actor, SpriteSheet, Animation, range, Vector, CollisionType, Input, Engine, RotationType } from "excalibur";
 import { Resources } from "../resources";
 import { Platform } from "../roadelements/platform";
+import { FriendlyFly } from "./friendlyfly";
 
 export class Player extends Actor{
 
@@ -27,6 +28,7 @@ export class Player extends Actor{
     onInitialize(engine){
         this.friends = 0
         this.friendlist = []
+        this.friendlyfly = 0
         this.remainingactions = 2
         this.body.bounciness = 0
 
@@ -109,5 +111,28 @@ export class Player extends Actor{
                 this.graphics.use(this.runninganimation)
             }
         }
+    }
+
+    addfriend(engine){
+        if(this.friendlyfly === 0){
+            this.friendlyfly = new FriendlyFly()
+            this.addChild(this.friendlyfly)
+            this.friendlist.push(this.friendlyfly)
+
+        } else {
+
+            let newfriend = new FriendlyFly()
+            this.friendlist[this.friendlist.length - 1].addChild(newfriend)
+            this.friendlist.push(newfriend)
+        }
+
+        console.log(this.friendlist)
+    }
+
+    deletefriend(){
+        if(this.friendlyfly instanceof FriendlyFly){
+            this.friendlyfly.deleteItself()
+        }
+        
     }
 }
