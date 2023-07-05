@@ -13,6 +13,11 @@ export class Player extends Actor{
 
     grounded
 
+    friends
+    friendlist
+    friendlyfly
+
+
     constructor(){
         super({height: 75, width: 50})
         this.body.collisionType = CollisionType.Active
@@ -20,7 +25,9 @@ export class Player extends Actor{
     }
 
     onInitialize(engine){
-
+        this.friends = 0
+        this.friendlist = []
+        this.remainingactions = 2
         this.body.bounciness = 0
 
         this.spritesheet = SpriteSheet.fromImageSource({
@@ -71,6 +78,18 @@ export class Player extends Actor{
         if(engine.input.keyboard.wasPressed(Input.Keys.ShiftLeft)) {
             if(this.grounded > 0){
                 engine.currentScene.flipgravity()
+                this.remainingactions = this.remainingactions - 1
+            }
+        }
+
+        if(engine.input.keyboard.wasPressed(Input.Keys.Space)) {
+            if(this.grounded > 0){
+                this.remainingactions = this.remainingactions - 1
+                if(engine.currentScene.gravityflipped){
+                    this.vel.y = 800
+                } else {
+                    this.vel.y = -800
+                }
             }
         }
 

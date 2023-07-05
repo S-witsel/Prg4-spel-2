@@ -1,26 +1,28 @@
 import { Actor, Vector } from "excalibur";
 import { Platform } from "../roadelements/platform";
+import { RoadSegmentBase } from "./roadsegmentbase";
+import { PowerUpFly } from "../powerups/powerupfly";
 
-export class RoadSegment1 extends Actor{
+export class RoadSegment1 extends RoadSegmentBase{
 
-    scrollingspeed
-
-    constructor(scrollingspeed){
-        super({width: 800, height: 600})
-        this.scrollingspeed = scrollingspeed
+    constructor(){
+        super()
     }
 
     onInitialize(){
-        this.addChild(new Platform(400, 25, 800))
-        this.addChild(new Platform(400, 575, 800))
-        this.vel = new Vector(this.scrollingspeed,0)
+        this.platforms.push(new Platform(400, 25, 800))
+        this.platforms.push(new Platform(400, 575, 800))
+
+        this.addChild(new PowerUpFly())
+
+        this.platforms.forEach(element => {
+            this.addChild(element)
+        });
     }
     
     onPreUpdate(engine){
-        if(this.pos.x < - 800){
-            this.kill()
-            engine.currentScene.levelsegmentkilled = true
-        }
+        this.exitscreenhandler(engine)
+        this.scrollspeedhandler(engine.currentScene.scrollingspeed)
     }
     
 }
