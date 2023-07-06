@@ -93,7 +93,7 @@ export class Level1 extends Scene{
     }
 
     onPreUpdate(engine,delta){
-        this.updatescore(1)
+        this.updatescore()
         this.updatescrollspeed(engine,delta)
 
         if(this.levelsegmentkilled){
@@ -133,7 +133,7 @@ export class Level1 extends Scene{
         }
     }
 
-    updatescore(multiplier){
+    updatescore(){
         this.scoremultiplier = this.player.friends * 0.1 + 1
         this.score = this.score + 0.01 * this.scoremultiplier
         this.scorelabel.text = `Score: ${Math.round(this.score)} Multiplier: ${this.scoremultiplier}`

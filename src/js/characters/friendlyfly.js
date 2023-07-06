@@ -1,11 +1,14 @@
 import { Animation, SpriteSheet, range, Actor, Vector } from "excalibur";
 import { Resources } from "../resources";
+import { FlyHat } from "../misc/flyhat";
 
 export class FriendlyFly extends Actor{
 
     spritesheet
     friendlyfly
     timeattached
+
+    hat
 
     constructor(){
         super()
@@ -28,6 +31,9 @@ export class FriendlyFly extends Actor{
         this.graphics.use(animation)
 
         this.pos = new Vector(-40, 0)
+
+        this.hat = new FlyHat()
+        this.addChild(this.hat)
     }
 
     onPreUpdate(){

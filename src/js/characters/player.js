@@ -65,7 +65,7 @@ export class Player extends Actor{
         })
         
         this.on('exitviewport', (event) => {
-            engine.goToScene("gameover")
+            engine.goToScene("gameover", {score: engine.currentScene.score})
         })
     }
 
