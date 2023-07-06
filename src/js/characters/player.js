@@ -125,8 +125,6 @@ export class Player extends Actor{
             this.friendlist[this.friendlist.length - 1].addChild(newfriend)
             this.friendlist.push(newfriend)
         }
-
-        console.log(this.friendlist)
     }
 
     deletefriend(){

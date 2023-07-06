@@ -11,6 +11,7 @@ export class Level1 extends Scene{
     player
 
     score
+    scoremultiplier
     scorelabel
 
     gravityflipped
@@ -39,11 +40,11 @@ export class Level1 extends Scene{
         this.score = 0
 
         this.scorelabel = new Label({
-            text: `Score: ${this.score}`,
+            text: `Score: ${this.score}, Multiplier: ${this.scoremultiplier}`,
             pos: new Vector(600,100),
             font: new Font({
                 family: 'impact',
-                size: 40,
+                size: 20,
                 unit: FontUnit.Px,
                 color:Color.White
             })
@@ -61,6 +62,7 @@ export class Level1 extends Scene{
         this.player.friendlist = []
 
         this.score = 0
+        this.scoremultiplier = 1
         this.scrollingspeedCD = 0
         this.scrollingspeed = -200
         this.gravityflipped = true
@@ -132,8 +134,9 @@ export class Level1 extends Scene{
     }
 
     updatescore(multiplier){
-        this.score = this.score + 0.01 * multiplier
-        this.scorelabel.text = `Score: ${Math.round(this.score)}`
+        this.scoremultiplier = this.player.friends * 0.1 + 1
+        this.score = this.score + 0.01 * this.scoremultiplier
+        this.scorelabel.text = `Score: ${Math.round(this.score)} Multiplier: ${this.scoremultiplier}`
     }
 
 
